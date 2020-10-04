@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Training_TestModule::studentmenu" title="Student" translate="title" module="Training_TestModule" sortOrder="20" resource="Training_TestModule::student"/>
+        <add id="Training_TestModule::student_grid" title="Student Grid" translate="title" module="Training_TestModule" sortOrder="10" parent="Training_TestModule::studentmenu" action="studentgrid/student/index" resource="Training_TestModule::student"/>
+    </menu>
+</config>

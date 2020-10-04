@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="training_db_schema" resource="default" engine="innodb" comment="Second Training Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="test name" nullable="false" length="32" comment="Test"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" comment="created_at" default="CURRENT_TIMESTAMP"/>
+        <index referenceId="TRAINING_DB_SCHEMA_ENTITY" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+    </table>
+    <table name="training_scheduled_three" resource="default" engine="innodb" comment="Training Schedule Three">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false"
+                comment="Entity ID"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" comment="created_at" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="foreign" referenceId="CAT_PRD_ENTT_DTIME_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="training_scheduled_three" column="entity_id" referenceTable="training_db_schema"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>

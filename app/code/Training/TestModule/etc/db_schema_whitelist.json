@@ -1,0 +1,21 @@
+{
+    "training_db_schema": {
+        "column": {
+            "entity_id": true,
+            "test name": true,
+            "created_at": true
+        },
+        "index": {
+            "TRAINING_DB_SCHEMA_ENTITY_ID": true
+        }
+    },
+    "training_scheduled_three": {
+        "column": {
+            "entity_id": true,
+            "created_at": true
+        },
+        "constraint": {
+            "TRAINING_SCHEDULED_THREE_ENTITY_ID_TRAINING_DB_SCHEMA_ENTITY_ID": true
+        }
+    }
+}

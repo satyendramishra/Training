@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <!--ui_component.data source-->
+            <item name="provider" xsi:type="string">student_grid_listing.training_student_listing_data_source</item>
+            <!-- ui_component.data source-->
+            <item name="deps" xsi:type="string">student_grid_listing.training_student_listing_data_source</item>
+        </item>
+        <!-- column name -->
+        <item name="spinner" xsi:type="string">training_student_listing_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Student</item>
+                <item name="class" xsi:type="string">primary</item>
+                <!-- New Action -->
+                <item name="url" xsi:type="string">*/*/newAction</item>
+            </item>
+        </item>
+    </argument>
+    <!-- data source as mentioned above -->
+    <dataSource name="training_student_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <!--Custom class name-->
+            <argument name="class" xsi:type="string">TrainingStudentGridDataProvider</argument>
+            <!--data source as mentioned above-->
+            <argument name="name" xsi:type="string">training_student_listing_data_source</argument>
+            <!--primary key-->
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <!--request field-->
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <!--index column-->
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/toolbar</item>
+                <item name="sticky" xsi:type="string">true</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <!--ui component-->
+                        <item name="namespace" xsi:type="string">student_grid_listing</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
+        <component name="columns_controls">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsData" xsi:type="array">
+                        <!--ui component.ui component.spinner-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                </item>
+            </argument>
+        </component>
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--ui component.ui component.spinner.ids-->
+                    <item name="selectProvider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--ui component.data source-->
+                    <item name="provider" xsi:type="string">student_grid_listing.training_student_listing_data_source</item>
+                    <!--ui component.data source.listing_top.listing_filters_chips-->
+                    <item name="chipsProvider" xsi:type="string">student_grid_listing.training_student_listing_data_source.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <!--ui component.ui component.listing_top.bookmarks-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--ui component.ui component.spinner-->
+                    <item name="columnsProvider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <!--ui component.ui component.listing_top.bookmarks-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <!--ui component.ui component.listing_top.listing_filters-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <!--ui component.ui component.spinner.listing_filters.${ $.index }:visible-->
+                            <item name="visible" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--ui component.ui component.spinner.ids-->
+                    <item name="selectProvider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns.ids</item>
+                    <!--primary key-->
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <!--admin frontname/controller/action-->
+                        <item name="url" xsi:type="url" path="studentgrid/student/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete items</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="edit">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">edit</item>
+                        <item name="label" xsi:type="string" translate="true">Edit</item>
+                        <item name="callback" xsi:type="array">
+                            <!--edit provider to be checked-->
+                            <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns</item>
+                            <item name="target" xsi:type="string">editSelected</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <!--ui componenet.ui component.listing_top.bookmarks-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <!--ui componenet.ui component.spinner.ids-->
+                    <item name="selectProvider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+    </container>
+    <!--spinner-->
+    <columns name="training_student_listing_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="storageConfig" xsi:type="array">
+                    <!--ui component.uicomponent.listing_top.bookmarks-->
+                    <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current</item>
+                </item>
+                <item name="editorConfig" xsi:type="array">
+                    <!--ui component.uicomponent.spinner.ids-->
+                    <item name="selectProvider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns.ids</item>
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <!--primary key-->
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="clientConfig" xsi:type="array">
+                        <!--admin frontname/controller/action-->
+                        <item name="saveUrl" xsi:type="url" path="studentgrid/student/inlineEdit"/>
+                        <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <!--ui component.uicomponent.spinner_editor-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.training_student_listing_columns_editor</item>
+                        <item name="target" xsi:type="string">startEdit</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                            <item name="1" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <!--ui component.uicomponent.listing_top.bookmarks-->
+                        <item name="provider" xsi:type="string">student_grid_listing.student_grid_listing.listing_top.bookmarks</item>
+                        <item name="root" xsi:type="string">columns.${ $.index }</item>
+                        <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--primary key-->
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <!--entity_id column name-->
+        <column name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="js_config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="student_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Student Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="grade">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Grade</item>
+                </item>
+            </argument>
+        </column>
+        <column name="class">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Class</item>
+                </item>
+            </argument>
+        </column>
+        <!--<column name="image" class="Training\Hellogrid\Ui\Component\Listing\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
+                </item>
+            </argument>
+        </column>-->
+        <!--<column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Training\Hellogrid\Model\Source\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">select</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                </item>
+            </argument>
+        </column>-->
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Created</item>
+                </item>
+            </argument>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Updated</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Training\TestModule\Ui\Component\Listing\Column\StudentActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="urlEntityParamName" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

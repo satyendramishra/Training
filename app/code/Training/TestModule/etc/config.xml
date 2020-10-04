@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <student_section>
+            <student_group>
+                <config_name>Dummy Value </config_name>
+                <config_multiselect>1</config_multiselect>
+                <config_multiselect>2</config_multiselect>
+            </student_group>
+        </student_section>
+    </default>
+</config>

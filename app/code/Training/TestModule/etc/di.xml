@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for = "Training\TestModule\Api\ChargerInterface" type="Training\TestModule\Model\Charger" />
+    <preference for = "Training\TestModule\Api\ColorInterface" type="Training\TestModule\Model\Black" />
+    <preference for ="Training\TestModule\Api\GradeInterface" type="Training\TestModule\Model\GradeOne" />
+    <preference for ="Training\TestModule\Api\PowerInterface" type="Training\TestModule\Model\Medium" />
+    <preference for ="Training\TestModule\Api\Data\StudentInterface" type="Training\TestModule\Model\Student"/>
+    <preference for ="Training\TestModule\Api\StudentRepositoryInterface" type="Training\TestModule\Model\StudentRepository"/>
+    <preference for="Training\TestModule\Api\Data\StudentSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <type name="Training\TestModule\Model\Employee">
+        <arguments>
+            <argument name="name" xsi:type="string">Ved</argument>
+            <argument name="age" xsi:type="number">1</argument>
+            <argument name="skills" xsi:type="array">
+                <item name="php" xsi:type="number">1</item>
+                <item name="mysql" xsi:type="number">1</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="HighPowerVirtualType" type="Training\TestModule\Model\GradeTwo">
+        <arguments>
+            <argument name="power" xsi:type="object">Training\TestModule\Model\High</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Training\TestModule\Model\Charger">
+        <arguments>
+            <argument name="color" xsi:type="object">Training\TestModule\Model\Red</argument>
+            <argument name="grade" xsi:type="object">HighPowerVirtualType</argument>
+        </arguments>
+    </type>
+
+    <!--<type name="Magento\Catalog\Model\Product">
+        <plugin name="testPlugin" type="Training\TestModule\Plugin\TestPlugin" />
+    </type>-->
+
+    <type name="Training\TestModule\Model\FastLoadingTestModule">
+        <arguments>
+            <argument name="slowLoadingTestModule" xsi:type="object">Training\TestModule\Model\SlowLoadingTestModule\Proxy</argument>
+        </arguments>
+    </type>
+
+    <!-- Virtual type and type created for the grid start-->
+    <virtualType name="TrainingStudentGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object">Training\TestModule\Model\ResourceModel\Student\Collection</argument>
+            <argument name="filterPool" xsi:type="object">StudentGridFiterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="StudentGridFiterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="training_student_listing_data_source" xsi:type="string">Training\TestModule\Model\ResourceModel\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Training\TestModule\Model\ResourceModel\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">student</argument>
+            <argument name="resourceModel" xsi:type="string">Training\TestModule\Model\ResourceModel\Student</argument>
+        </arguments>
+    </virtualType>
+    <!-- Virtual type and type created for the grid end-->
+</config>
